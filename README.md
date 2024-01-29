@@ -1,5 +1,5 @@
 # gentar_Resource_Identifier_inserter
-Gentar_distribution_rrid_inserter is a Python application designed to facilitate the process of adding RR IDs to the distribution table in a Gentar database using an API. 
+gentar_distribution_id_updater is a Python application designed to facilitate the process of adding RR IDs to the distribution table in a GenTaR database using an API. 
 The application allows users to download it from GitHub and run it locally. Users are required to provide a list of colony names and corresponding RR IDs in a tab-separated format.
 The primary purpose is to identify the colony ID associated with each colony name, and then use this colony ID to update the distribution table with the new RR ID.
 
