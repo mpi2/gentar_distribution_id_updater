@@ -42,8 +42,8 @@ pip install -r requirements.txt
 Add  colony name and rr ids tab(\t) seperated to be inserted on a separate line and save the file.
 and RRid has to start with "RRID:" e.g.
 ```
-jr34077\tRRID_MMRRC_048962-UCD
-jr34078\tRRID_MMRRC_048963-UCD
+jr34077\tRRID:MMRRC_048962-UCD
+jr34078\tRRID:MMRRC_048963-UCD
 ```
 ### B) Export environment variable with your user credential.
 ```
