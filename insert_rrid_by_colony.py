@@ -56,7 +56,7 @@ class Updater:
 
                     # Revise the outcome data on the GenTaR service
                     self.revise_service(tpo_url, outcome)
-                    print("Updated: {}".format(colony_and_rr_id))
+                    print("Successfully Updated: {}".format(colony_and_rr_id))
                 else:
                     print("RRID is not in the correct format: {}".format(colony_and_rr_id))
             except ValueError:
@@ -85,14 +85,16 @@ class Updater:
 
     def fetch_one_entry(self, url):
         # Fetch data from a given URL using the authentication token
-        headers = {'Content-Type': 'application/json', 'cache-control': 'no-cache', 'Authorization': 'Bearer ' + self.token}
+        headers = {'Content-Type': 'application/json', 'cache-control': 'no-cache',
+                   'Authorization': 'Bearer ' + self.token}
         r = requests.get(url, headers=headers)
         r.raise_for_status()
         return r.json()
 
     def revise_service(self, url, data):
         # Revise data at a given URL using the authentication token
-        headers = {'Content-Type': 'application/json', 'cache-control': 'no-cache', 'Authorization': 'Bearer ' + self.token}
+        headers = {'Content-Type': 'application/json', 'cache-control': 'no-cache',
+                   'Authorization': 'Bearer ' + self.token}
         r = requests.put(url, headers=headers, json=data)
         r.raise_for_status()
         return r.json(), r.status_code
