@@ -41,24 +41,23 @@ class Updater:
                 colony, rr_id = map(str.strip, colony_and_rr_id.split("\\t"))
                 print("Processing {}".format(colony_and_rr_id))
 
-                if rr_id.startswith("RRID:"):
-                    # Fetch GenTaR plan data for the given colony
-                    colony_data = self.fetch_gentar_plan(colony)
 
-                    # Construct the URL for the outcome associated with the colony
-                    tpo_url = self.service + "api/plans/{}/outcomes/{}".format(colony_data['pin'], colony_data['tpo'])
+                # Fetch GenTaR plan data for the given colony
+                colony_data = self.fetch_gentar_plan(colony)
 
-                    # Fetch the outcome data
-                    outcome = self.fetch_one_entry(tpo_url)
+                # Construct the URL for the outcome associated with the colony
+                tpo_url = self.service + "api/plans/{}/outcomes/{}".format(colony_data['pin'], colony_data['tpo'])
 
-                    # Update the distributionIdentifier with the provided rr_id
-                    outcome["colony"]["distributionProducts"][0]["distributionIdentifier"] = rr_id
+                # Fetch the outcome data
+                outcome = self.fetch_one_entry(tpo_url)
 
-                    # Revise the outcome data on the GenTaR service
-                    self.revise_service(tpo_url, outcome)
-                    print("Successfully Updated: {}".format(colony_and_rr_id))
-                else:
-                    print("RRID is not in the correct format: {}".format(colony_and_rr_id))
+                # Update the distributionIdentifier with the provided rr_id
+                outcome["colony"]["distributionProducts"][0]["distributionIdentifier"] = rr_id
+
+                # Revise the outcome data on the GenTaR service
+                self.revise_service(tpo_url, outcome)
+                print("Successfully Updated: {}".format(colony_and_rr_id))
+
             except ValueError:
                 print("Format your file please. Broken line is {}".format(colony_and_rr_id))
             except Exception as error:
