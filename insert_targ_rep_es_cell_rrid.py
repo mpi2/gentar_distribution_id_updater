@@ -3,6 +3,9 @@ import requests
 import os
 import sys
 
+
+REQUEST_TIMEOUT_SECONDS = 30
+
 class Updater:
 
     def __init__(self):
@@ -93,7 +96,7 @@ class Updater:
         credentials = {'userName': user, 'password': password}
 
         # Send a POST request to obtain the token
-        r = requests.post(url, headers=headers, json=credentials)
+        r = requests.post(url, headers=headers, json=credentials, timeout=REQUEST_TIMEOUT_SECONDS)
 
         if r.status_code == 200:
             self.token = r.json()['accessToken']
@@ -104,7 +107,7 @@ class Updater:
         # Fetch data from a given URL using the authentication token
         headers = {'Content-Type': 'application/json', 'cache-control': 'no-cache',
                    'Authorization': 'Bearer ' + self.token}
-        r = requests.get(url, headers=headers)
+        r = requests.get(url, headers=headers, timeout=REQUEST_TIMEOUT_SECONDS)
         r.raise_for_status()
         return r.json()
 
@@ -113,7 +116,7 @@ class Updater:
         # Revise data at a given URL using the authentication token
         headers = {'Content-Type': 'application/json', 'cache-control': 'no-cache',
                    'Authorization': 'Bearer ' + self.token}
-        r = requests.put(url, headers=headers, json=data)
+        r = requests.put(url, headers=headers, json=data, timeout=REQUEST_TIMEOUT_SECONDS)
 
         r.raise_for_status()
         return r.json(), r.status_code
