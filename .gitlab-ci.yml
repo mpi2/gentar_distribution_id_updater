@@ -5,6 +5,7 @@ variables:
   DS_ENABLE_VULNERABILITY_SCAN: 'true'
   DS_PIP_MANIFEST_FILE_NAME_PATTERN: 'requirements.txt'
   GITLAB_ADVANCED_SAST_ENABLED: 'true'
+  GIT_STRATEGY: clone
   PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
 
 include:
