@@ -2,8 +2,11 @@
 gentar_distribution_id_updater is a Python application designed to facilitate the process of adding RRIDs to the distribution tables in a GenTaR database using an API. 
 The application allows users to download it from GitHub and run it locally
 
-This project was written using python 3.9.0
-and has been tested on OSX
+## Supported Python versions
+
+Use Python 3.10 or newer; Python 3.13 or 3.14 is recommended.
+
+The CI baseline compiles the scripts on Python 3.10, 3.13, and 3.14. The pinned `requests` release requires Python 3.10 or newer.
 
 ## 1. Check your python installation:
 
@@ -13,13 +16,13 @@ or
 python3 --version
 ```
 
-## 2. Create a virtual environment for the project (requires Python 3.4+)
+## 2. Create a virtual environment for the project (requires Python 3.10+)
 
 ```
 cd <name_of_cloned_github_repository>
-python -m venv venv
-or
 python3 -m venv venv
+or
+python3.13 -m venv venv
 ```
 
 ## 3. To begin using the virtual environment, it needs to be activated:
@@ -31,7 +34,7 @@ source venv/bin/activate
 ## 4. Install the packages required for the project
 
 ```
-pip install -r requirements.txt
+python -m pip install -r requirements.txt
 ```
 ---
 ## 5. Prepare to run the program.
@@ -88,9 +91,9 @@ RRid has to start with "RRID:" e.g.
 EPD0840_2_E0\tMMRRC\t2022-01-01\t2022-01-01\tRRID:MMRRC_048962-UCDT
 ```
 ```
-python targ_rep_es_cell_rr_ids.py
+python insert_targ_rep_es_cell_rrid.py
 or
-python3 targ_rep_es_cell_rr_ids.py
+python3 insert_targ_rep_es_cell_rrid.py
 ```
 This will produce the following sort of output
 ```
@@ -115,9 +118,9 @@ PG00174_Z_3_E07\tMMRRC\t2022-01-01\t2022-01-01\tRRID:MMRRC_048962-UCDT
 
 
 ```
-python targ_rep_targeting_vector_rr_ids.py
+python insert_targ_rep_targeting_vector_rrid.py
 or
-python3 targ_rep_targeting_vector_rr_ids.py
+python3 insert_targ_rep_targeting_vector_rrid.py
 ```
 This will produce the following sort of output
 ```

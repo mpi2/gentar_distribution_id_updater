@@ -1,8 +1,11 @@
-image: dockerhub.ebi.ac.uk/mouse-informatics/python-pandas:latest
+image: python:3.13-slim
 
 variables:
   DS_ENFORCE_NEW_ANALYZER: 'true'
+  DS_ENABLE_VULNERABILITY_SCAN: 'true'
+  DS_PIP_MANIFEST_FILE_NAME_PATTERN: 'requirements.txt'
   GITLAB_ADVANCED_SAST_ENABLED: 'true'
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
 
 include:
   - template: Jobs/SAST.gitlab-ci.yml
@@ -21,6 +24,3 @@ sast:
 
 secret_detection:
   stage: test
-
-stages:
-  - test
